@@ -1,6 +1,7 @@
 package scripts
 
 import com.twitter.scrooge.Compiler
+import com.twitter.scrooge.backend.WithFinagle
 
 import scala.collection.mutable.Buffer
 import scala.io.Source
@@ -125,6 +126,8 @@ object ScroogeGenerator {
     val genFileMap = scroogeOutput.resolve("gen-file-map.txt")
 
     val scrooge = new Compiler
+
+    scrooge.flags += WithFinagle
 
     // we need to extract into the same tree, as that is the only way to get relative imports between them working..
     // AS SUCH, we are just going to try extracting EVERYTHING to the same tree, and we will just error if there
